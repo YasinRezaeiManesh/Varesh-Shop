@@ -23,9 +23,11 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">احراز هویت</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="{% url 'login' %}" class="nav-link">ورود</a>
-                                        </li>
+                                        {% if not request.user.is_authenticated %}
+                                            <li class="nav-item">
+                                                <a href="{% url 'login' %}" class="nav-link">ورود</a>
+                                            </li>
+                                        {% endif %}
                                         <li class="nav-item">
                                             <a href="{% url 'register' %}" class="nav-link">ثبت نام</a>
                                         </li>
@@ -38,8 +40,10 @@
                                 </li>
                                 <li class="nav-item"><a href="{% url 'about_us' %}" class="nav-link">درباره ما</a></li>
                                 <li class="nav-item"><a href="{% url 'team' %}" class="nav-link">تیم</a></li>
-                                <li class="nav-item"><a href="{% url 'questions' %}" class="nav-link">سوالات متداول</a></li>
-                                <li class="nav-item"><a href="{% url 'certificates' %}" class="nav-link">گواهینامه ها</a>
+                                <li class="nav-item"><a href="{% url 'questions' %}" class="nav-link">سوالات متداول</a>
+                                </li>
+                                <li class="nav-item"><a href="{% url 'certificates' %}" class="nav-link">گواهینامه
+                                    ها</a>
                                 </li>
 
                                 <li class="nav-item"><a href="{% url 'contact_us' %}" class="nav-link">با ما تماس
@@ -59,7 +63,11 @@
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a href="{% url 'products_list' %}" class="nav-link">محصولات</a>
                                 </li>
-                                <li class="nav-item"><a href="{% url 'user_basket' %}" class="nav-link">سبد خرید</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'user_basket' %}" class="nav-link">سبد خرید</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </li>
                         <li class="nav-item">

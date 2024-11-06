@@ -1,8 +1,8 @@
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
-
 from order_module.models import Order, OrderDetail
 from product_module.models import Product
+from site_module.models import SiteSettings
 
 
 # Create your views here.
@@ -65,6 +65,7 @@ def continue_payment(request: HttpRequest):
 
     context = {
         'order': current_order,
-        'sum': total_amount
+        'sum': total_amount,
+        'site': SiteSettings.objects.all().first()
     }
-    return render(request, 'order_module/basket_success.html', context)
+    return render(request, 'order_module/continue_payment.html', context)

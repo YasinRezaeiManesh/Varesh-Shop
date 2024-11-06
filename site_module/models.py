@@ -14,6 +14,7 @@ class SiteSettings(models.Model):
     copy_right = models.TextField(verbose_name='متن کپی رایت')
     time_working = models.TextField(max_length=100, verbose_name='ساعات کاری')
     short_description = models.TextField(verbose_name='توضیحات کوتاه', default='')
+    bank_cart = models.ImageField(upload_to='images/bank_cart', verbose_name='کارت بانکی', null=True, blank=True)
     logo = models.ImageField(null=True, blank=True, upload_to='images/logo', verbose_name='لوگو سایت')
     is_main_setting = models.BooleanField(default=False, verbose_name='تنظیمات اصلی')
 
