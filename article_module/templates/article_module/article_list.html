@@ -1,0 +1,91 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+
+
+{% block title %}
+    لیست مقالات
+{% endblock %}
+
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>وبلاگ</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">لیست مقالات</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area ptb-100">
+        <div class="container">
+            <div class="mb-4 pb-2">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 a-hover">
+                        {% render_partial 'article_module.views.article_category_component' %}
+                    </div>
+                </div>
+            </div>
+            <div class="margin-h2"></div>
+            <div class="row align-items-center justify-content-center">
+                {% for article in articles %}
+                    <div class="col-xl-4 col-md-6">
+                        <div class="blog-single-item style-two">
+                            <a href="{% url 'article_detail' slug=article.slug %}"
+                               class="d-block blog-img custom-service-detail-img">
+                                <img src="{{ article.image.url }}" alt="blog">
+                            </a>
+                            <ul class="ps-0 list-unstyled date">
+                                <li><span>{{ article.shamsi_date }}</span></li>
+                            </ul>
+                            <h3><a href="single-blog.html">{{ article.title }}</a></h3>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+                <div class="col-md-12">
+                    <div class="pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}" class="next page-count hover-style">
+                                <div class="inner-border"><i class="icofont-simple-right"></i></div>
+                            </a>
+                        {% endif %}
+
+                        {% for pageNumber in paginator.page_range %}
+                            <a href="?page={{ pageNumber }}"
+                               class="page-count {% if page_obj.number == pageNumber %} current {% endif %} hover-style"
+                               aria-current="page">
+                                <div class="inner-border">{{ pageNumber }}</div>
+                            </a>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="next page-count hover-style">
+                                <div class="inner-border"><i class="icofont-simple-left"></i></div>
+                            </a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

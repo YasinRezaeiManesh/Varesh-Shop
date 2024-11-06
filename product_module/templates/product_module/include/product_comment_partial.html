@@ -1,0 +1,33 @@
+<ul class="review-list ps-0 mb-0 list-unstyled" id="comment_area">
+    {% for comment in comments %}
+        <li>
+            <div class="d-md-flex align-items-center">
+                <div class="flex-shrink-0">
+                    <img src="{{ comment.user.avatar.url }}" alt="team">
+                </div>
+                <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                    <h3>{{ comment.user }}</h3>
+                    <p>{{ comment.text }}</p>
+                </div>
+            </div>
+            <p class="date-style">{{ comment.shamsi_date }}</p>
+            <a onclick="fillParentId({{ comment.id }})" class="main-btn custom-btn">پاسخ</a>
+        </li>
+
+        {% for sub_comment in comment.productcomment_set.all %}
+            <li class="sub-comment">
+                <div class="d-md-flex align-items-center">
+                    <div class="flex-shrink-0"><img src="/assets/images/team-1.jpg" alt="team">
+                    </div>
+                    <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                        <h3>{{ sub_comment.user }}</h3>
+                        <p>{{ sub_comment.text }}</p>
+                    </div>
+                </div>
+                <p class="date-style" id="scroll_me">{{ comment.shamsi_date }}</p>
+            </li>
+        {% endfor %}
+    {% endfor %}
+
+
+</ul>

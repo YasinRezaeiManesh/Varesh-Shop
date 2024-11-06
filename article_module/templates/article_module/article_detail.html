@@ -1,0 +1,181 @@
+{% extends 'shared/_layout.html' %}
+
+
+{% block title %}
+    جزییات مقاله
+{% endblock %}
+
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;./assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>جزئیات وبلاگ</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">جزئیات وبلاگ</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="blog-details-area pt-100">
+        <div class="container">
+            <div class="blog-details-content">
+                <h3 class="custom-h3">« {{ article.title }} »</h3>
+                <div class="blog-details-img">
+                    <img class="custom-img" src="{{ article.image.url }}" alt="blog-details-img">
+                </div>
+                <h2>{{ article.short_description }}</h2>
+                <p class="text-wrap">{{ article.description }}</p>
+                <div class="mb-60"></div>
+                <div class="mb-60"></div>
+                <div class="row">
+                    {% for picture in galleries %}
+                        <div class="col-g-6 col-sm-6">
+                            <div class="blog-img mb-4 mb-sm-0">
+                                <img class="custom-img" src="{{ picture.image.url }}" alt="blog">
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="mb-60"></div>
+                <h2>پشت صحنه یک عکاسی</h2>
+                <p class="text-wrap">{{ article.description2 }}</p>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 tags-share">
+                    <ul class="ps-0 mb-0 list-unstyled d-flex flex-wrap gap-2 tags-list align-items-center">
+                        <li><span>برچسب ها:</span></li>
+                        <li><a href="blog.html">طرح</a></li>
+                        <li><a href="blog.html">توسعه</a></li>
+                        <li><a href="blog.html">برنامه ریزی</a></li>
+                        <li><a href="blog.html">بازار یابی</a></li>
+                    </ul>
+                    <ul class="ps-0 mb-0 list-unstyled d-flex social-list align-items-center gap-3">
+                        <li>
+                            <span>اشتراک گذاری:</span>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/" target="_blank">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com/" target="_blank"
+                            ><i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/" target="_blank">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.pinterest.com/" target="_blank">
+                                <i class="fa-brands fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.whastapp.com/" target="_blank">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.telegram.com/" target="_blank">
+                                <i class="fa-brands fa-telegram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-a-comment-area pb-100">
+        <div class="container">
+            <form class="post-a-comment">
+                <ul class="review-list ps-0 mb-0 list-unstyled" id="comment_area_article">
+                    {% for comment in comments %}
+                        <li>
+                            <div class="d-md-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    {% if comment.user.avatar %}
+                                        <img src="{{ comment.user.avatar.url }}" alt="team">
+                                    {% else %}
+                                        <img src="/assets/images/profile-builder-pro-min.png" alt="team">
+                                    {% endif %}
+                                </div>
+                                <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                    <h3>{{ comment.user }}</h3>
+                                    <p>{{ comment.text }}</p>
+                                </div>
+                            </div>
+                            <p class="date-style">{{ comment.shmasi_date }}</p>
+                            <a onclick="fillParentIdArticle({{ comment.id }})" class="main-btn">پاسخ</a>
+                        </li>
+                        <div class="mb-30"></div>
+                        {% for sub_comment in comment.articlecomment_set.all %}
+                            <li class="sub-comment">
+                                <div class="d-md-flex align-items-center">
+                                    <div class="flex-shrink-0"><img src="/assets/images/team-3.jpg" alt="team"></div>
+                                    <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                        <h3>{{ sub_comment.user }}</h3>
+                                        <p>{{ sub_comment.text }}</p>
+                                    </div>
+                                </div>
+                                <p class="date-style">{{ sub_comment.shmasi_date }}</p>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+                <div id="scroll_me"></div>
+                <br>
+                <br>
+                <div class="section-title text-start ms-0"><h4>ارسال یک نظر</h4></div>
+                {% if request.user.is_authenticated %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input type="hidden" value="" id="parentIdArticle">
+                            <div class="form-group">
+                                <textarea id="commentTextArticle" cols="30" rows="6" class="form-control"
+                                          placeholder="متن پیام"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <a onclick="sendArticleComment({{ article.id }})"
+                               class="circle-btn d-inline-block text-decoration-none bg-transparent d-flex align-items-center">
+                                <span>ارسال</span>
+                                <i class="fa-solid fa-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <br>
+                    <br>
+                    <div class="alert alert-primary">
+                        <p>برای درج نظر میبایست <a class="custom-a color-blue" href="{% url 'login' %}"><b>لاگین</b></a>
+                            کنید</p>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

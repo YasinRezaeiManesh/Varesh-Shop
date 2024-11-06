@@ -1,0 +1,94 @@
+{% extends 'shared/_layout.html' %}
+
+
+{% block title %}
+    سوالات متداول
+{% endblock %}
+
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>سوالات متداول</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">سوالات متداول</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="faq-area ptb-100">
+        <div class="container">
+            <div class="custom-img">
+                <img src="/assets/images/question.webp" alt="" width="200px">
+            </div>
+            <div class="accordion accordion-content margin-h3" id="accordionExample">
+                {% for questions in questions_list %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <a class="accordion-button custom-a" aria-expanded="true" aria-controls="{{ questions.url_title }}"
+                               href="#{{ questions.url_title }}" data-bs-toggle="collapse">
+                                <span class="d-sm-flex align-items-center">
+                                    <span class="flex-shrink-0">
+                                        <span class="count">?</span>
+                                    </span>
+                                    <span class="flex-grow-1 mt-3 mt-sm-0">
+                                        <span>{{ questions.question }}</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </h2>
+                        <div id="{{ questions.url_title }}" class="accordion-collapse collapse show"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>{{ questions.answer }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% comment %}{% for questions in questions_list %}
+                    <details class="custom-detail">
+                        <summary>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke-width="1.5"
+                                 stroke="currentColor" class="custom-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"></path>
+                            </svg>
+                            <h3 class="accordion-header">
+                                    <span class="d-sm-flex align-items-center">
+                                        <span class="flex-grow-1 mt-3 mt-sm-0 accordion-body">
+                                            <span class="custom-span">{{ questions.question }}</span>
+                                        </span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="custom-icon">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+                            </h3>
+                        </summary>
+                        <p>{{ questions.answer }}</p>
+                    </details>
+                {% endfor %}{% endcomment %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

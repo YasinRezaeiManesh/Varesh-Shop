@@ -1,0 +1,50 @@
+<div class="footer-area pt-100 pb-75 bg-color-030303">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="footer-single-item style-three">
+                    <div class="custom-logo-footer">
+                        <img src="/assets/images/logo_varesh%20(1).png" alt="white-logo">
+                    </div>
+                    <p>{{ site_settings.short_description }}</p>
+                    <ul class="social-link ps-0 mb-0 list-unstyled">
+                        <li><a href="{{ site_settings.telegram }}" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        </li>
+                        <li><a href="{{ site_settings.whatsapp }}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                        </li>
+                        <li><a href="{{ site_settings.instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="footer-single-item style-three ms-lg-5">
+                    <h3>لینک های مفید</h3>
+                    <ul class="useful-link">
+                        <li><a href="{% url 'about_us' %}">درباره ما</a></li>
+                        <li><a href="{% url 'service_list' %}">خدمات ما</a></li>
+                        <li><a href="{% url 'contact_us' %}">با ما تماس بگیرید</a></li>
+                        <li><a href="{% url 'questions' %}">سوالات متداول</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="footer-single-item style-three">
+                    <h3>با ما تماس بگیرید</h3>
+                    <p class="mb-3">{{ site_settings.address }}</p>
+                    <ul class="contact-info ms-0">
+                        <li><a href="tel:+52883256953129">{{ site_settings.phone }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-color-030303">
+    <div class="container">
+        <p class="copy-right style-three">
+            <span>{{ site_settings.copy_right }}</span>
+        </p>
+    </div>
+</div>
+<div class="back-to-top text-center"><i class="icofont-simple-up"></i></div>

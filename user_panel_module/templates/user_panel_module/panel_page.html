@@ -1,0 +1,131 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+
+
+{% block title %}
+    {% if request.user.is_authenticated %}
+        پنل کاربری
+    {% else %}
+        خطای 404
+    {% endif %}
+{% endblock %}
+
+{% block header_references %}
+    <link rel="stylesheet" href="/assets/lib/image_lightbox/css/lightbox.min.css">
+{% endblock %}
+
+{% block footer_references %}
+    <script src="/assets/lib/image_lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/lib/image_lightbox/js/lightbox-plus-jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        <div class="preloader preloader-deactivate">
+            <div class="content">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div>
+        </div>
+        <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+             style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+            <div class="container mw-1680">
+                <div class="page-banner-content">
+                    <h2>پنل کاربری</h2>
+                    <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                        <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                        <li><span class="active">پنل کاربری</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+                <img src="/assets/images/panel_pic.png" alt="" class="margin-img">
+            </div>
+            <div class="col-md-8 form-profile">
+                {% if user.avatar %}
+                    <a href="{{ user.avatar.url }}" data-lightbox="profile-avatar profile_panel">
+                        <img src="{{ user.avatar.url }}" alt="" class="profile_panel">
+                    </a>
+                {% else %}
+                    <img src="/assets/images/profile-builder-pro-min.png" alt="" class="profile_panel picture-one">
+                {% endif %}
+                <div class="information-form">
+                    <p class="information">
+                        <b>نام :</b> {{ user.first_name }}
+                    </p>
+                    <p class="information">
+                        <b>نام خانوادگی :</b> {{ user.last_name }}
+                    </p>
+                    <p class="information">
+                        <b>آدرس ایمیل :</b> {{ user.email }}
+                    </p>
+                    <p class="information">
+                        <b>آدرس محل سکونت :</b> {{ user.address }}
+                    </p>
+                    <p class="information">
+                        <b>درباره شخص :</b> {{ user.about_user }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="preloader preloader-deactivate">
+            <div class="content">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div>
+        </div>
+        <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+             style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+            <div class="container mw-1680">
+                <div class="page-banner-content">
+                    <h2>Error Page 404</h2>
+                    <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                        <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                        <li><span class="active">Error Page 404</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="error-page-area ptb-100">
+            <div class="container">
+                <div class="text-center">
+                    <img src="/assets/images/404.png" alt="404">
+                    <div class="error-content">
+                        <h3>این صفحه یافت نشد</h3>
+                        <p>کاربر گرامی ، برای دسترسی به این صفحه میبایست به پنل کاربری خود وارد شوید</p>
+                        <a href="{% url 'login' %}" class="main-btn">ورود به پنل کاربری</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+    <br>
+    <br>
+{% endblock %}

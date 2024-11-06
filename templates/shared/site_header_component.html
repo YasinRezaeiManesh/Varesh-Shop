@@ -1,0 +1,196 @@
+<div class="navbar-area bg-black">
+    <div class="main-nav">
+        <div class="container mw-1680">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="collapse navbar-collapse for-mobile-menu" id="navbarSupportedContent"
+                     style="display: block;">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="{% url 'home_page' %}" class="nav-link">صفحه اصلی</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">صفحات</a>
+                            <ul class="dropdown-menu">
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                        <li class="nav-item">
+                                            <a href="/admin/" class="nav-link">پنل ادمین</a>
+                                        </li>
+                                    {% endif %}
+                                {% endif %}
+                                <li class="nav-item"><a href="{% url 'user_panel' %}" class="nav-link">پنل کاربری</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">احراز هویت</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="{% url 'login' %}" class="nav-link">ورود</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{% url 'register' %}" class="nav-link">ثبت نام</a>
+                                        </li>
+                                        {% if request.user.is_authenticated %}
+                                            <li class="nav-item">
+                                                <a href="{% url 'logout' %}" class="nav-link">خروج از حساب</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="{% url 'about_us' %}" class="nav-link">درباره ما</a></li>
+                                <li class="nav-item"><a href="{% url 'team' %}" class="nav-link">تیم</a></li>
+                                <li class="nav-item"><a href="{% url 'questions' %}" class="nav-link">سوالات متداول</a></li>
+                                <li class="nav-item"><a href="{% url 'certificates' %}" class="nav-link">گواهینامه ها</a>
+                                </li>
+
+                                <li class="nav-item"><a href="{% url 'contact_us' %}" class="nav-link">با ما تماس
+                                    بگیرید</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link dropdown-toggle">خدمات</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="{% url 'service_list' %}" class="nav-link">لیست خدمات ما</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">خرید کنید</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="{% url 'products_list' %}" class="nav-link">محصولات</a>
+                                </li>
+                                <li class="nav-item"><a href="{% url 'user_basket' %}" class="nav-link">سبد خرید</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">وبلاگ</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="{% url 'article_list' %}" class="nav-link">لیست مقالات</a>
+                                </li>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    <div class="nav-right-options d-flex align-items-center">
+                        <ul class="social-link ps-0 mb-0 list-unstyled">
+                            <li>
+                                <a href="{{ site_settings.instagram }}" target="_blank">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ site_settings.telegram }}" target="_blank">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ site_settings.whatsapp }}" target="_blank">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="mobile-nav">
+        <div class="container" style="margin-right: 50px">
+            <div class="mobile-menu mean-container">
+                <div class="mean-bar">
+                    <a href="#nav" class="meanmenu-reveal meanclose"
+                       style="right: 0px; left: auto; text-align: center; text-indent: 0px; font-size: 18px;">X</a>
+                    <nav class="mean-nav">
+                        <ul class="navbar-nav me-auto" style="">
+                            <li class="nav-item dropdown-toggle active">
+                                <a href="#" class="nav-link dropdown-toggle active">صفحه اصلی</a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li class="nav-item"><a href="index.html" class="nav-link active">آژانس خلاق</a>
+                                    </li>
+                                    <li class="nav-item"><a href="index-2.html" class="nav-link">آژانس بازرگانی</a></li>
+                                    <li class="nav-item"><a href="index-3.html" class="nav-link">آژانس دیجیتال</a></li>
+                                </ul>
+                                <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">صفحات</a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link">درباره ما</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="team.html" class="nav-link">تیم</a>
+                                    </li>
+                                    <li class="nav-item"><a href="faq.html" class="nav-link">سوالات متداول</a></li>
+                                    <li class="nav-item"><a href="testimonials.html" class="nav-link">گواهینامه ها</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">احراز هویت</a>
+                                        <ul class="dropdown-menu" style="display: none;">
+                                            <li class="nav-item"><a href="sign-in.html" class="nav-link">ورود</a></li>
+                                            <li class="nav-item"><a href="sign-up.html" class="nav-link">ثبت نام</a>
+                                            </li>
+                                        </ul>
+                                        <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                                    <li class="nav-item"><a href="privacy-policy.html" class="nav-link">سیاست حفظ حریم
+                                        خصوصی</a></li>
+                                    <li class="nav-item"><a href="terms-conditions.html" class="nav-link">شرایط و
+                                        ضوابط</a></li>
+                                    <li class="nav-item"><a href="404.html" class="nav-link">خطا</a></li>
+                                    <li class="nav-item"><a href="contact-us.html" class="nav-link">با ما تماس
+                                        بگیرید</a></li>
+                                </ul>
+                                <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">خدمات</a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li class="nav-item"><a href="services.html" class="nav-link">خدمات</a></li>
+                                    <li class="nav-item"><a href="service-details.html" class="nav-link">جزئیات
+                                        خدمات</a></li>
+                                </ul>
+                                <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">مطالعه موردی</a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li class="nav-item"><a href="case-study.html" class="nav-link">مطالعه موردی</a>
+                                    </li>
+                                    <li class="nav-item"><a href="cases-study-details.html" class="nav-link">جزئیات
+                                        مطالعه موردی</a></li>
+                                </ul>
+                                <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">خرید کنید</a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li class="nav-item"><a href="products.html" class="nav-link">محصولات</a></li>
+                                    <li class="nav-item"><a href="cart.html" class="nav-link">سبد خرید</a></li>
+                                    <li class="nav-item"><a href="checkout.html" class="nav-link">وارسی</a></li>
+                                    <li class="nav-item"><a href="product-details.html" class="nav-link">جزئیات
+                                        محصول</a></li>
+                                </ul>
+                                <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">وبلاگ</a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li class="nav-item"><a href="blog.html" class="nav-link">وبلاگ</a></li>
+                                    <li class="nav-item"><a href="single-blog.html" class="nav-link">صفحه وبلاگ واحد</a>
+                                    </li>
+                                </ul>
+                                <a class="mean-expand" href="#" style="font-size: 18px">+</a></li>
+                        </ul>
+                        <div class="nav-right-options d-flex align-items-center">
+                            <ul class="social-link ps-0 mb-0 list-unstyled" style="display: none;">
+                                <li><a href="https://facebook.com/" target="_blank"><i
+                                        class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                                </li>
+                                <li><a href="https://instagram.com/" target="_blank"><i
+                                        class="fa-brands fa-instagram"></i></a></li>
+                                <li class="mean-last"><a href="https://linkedin.com/" target="_blank"><i
+                                        class="fa-brands fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

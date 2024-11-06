@@ -1,0 +1,226 @@
+{% extends 'shared/_layout.html' %}
+{% load poll_extras %}
+
+{% block title %}
+    جزییات محصول
+{% endblock %}
+
+
+{% block content %}
+    <body>
+    <div class="page-banner-area bg-black bg-img" data-background="./assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;./assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>جزئیات محصول</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">جزئیات محصول</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="product-details-area ptb-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="product-details-img">
+                        <img src="{{ product.image.url }}" alt="product-details-img">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-details-content mt-4 mt-lg-0">
+                        <h3>{{ product.title }}</h3>
+                        <span class="price">{{ product.price|three_digits_currency }}</span>
+                        {% comment %}<div class="d-flex align-items-center gap-2 review">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-regular fa-star"></i><span>(5)</span>
+                        </div>{% endcomment %}
+                        <p>{{ product.short_description }}</p>
+                        {% comment %}<span class="sub-title">رنگ سفید</span>
+                        <ul class="d-flex color-grid ps-0 list-unstyled">
+                            <li>
+                                <input type="radio" name="color" id="red" value="red"><label for="red"><span
+                                    class="red"></span></label>
+                            </li>
+                            <li>
+                                <input type="radio" name="color" id="green"><label for="green"><span
+                                    class="green"></span></label>
+                            </li>
+                            <li>
+                                <input type="radio" name="color" id="yellow"><label for="yellow"><span
+                                    class="yellow"></span></label>
+                            </li>
+                            <li>
+                                <input type="radio" name="color" id="olive"><label for="olive"><span
+                                    class="olive"></span></label>
+                            </li>
+                            <li>
+                                <input type="radio" name="color" id="orange"><label for="orange"><span
+                                    class="orange"></span></label>
+                            </li>
+                        </ul>{% endcomment %}
+                        <span class="sub-title">تعداد</span>
+                        <div class="d-flex justify-content-xl-between align-items-center flex-wrap gap-2 quantity-wrap">
+                            <div class="input-counter d-flex justify-content-between">
+                                <span class="minus-btn">
+                                    <i class="fa-regular fa-minus"></i>
+                                </span>
+                                <input type="text" value="1" min="1" id="product-count">
+                                <span class="plus-btn">
+                                    <i class="fa-regular fa-plus"></i>
+                                </span>
+                            </div>
+                            <button onclick="addProductToOrder({{ product.id }})" class="main-btn">
+                                افزودن به سبد خرید
+                            </button>
+                        </div>
+                        <ul class="features-list ps-0 list-unstyled">
+                            <li>
+                                <span>دسترسی:</span>
+                                {% if product.inventory %}
+                                    <span class="color-green">ذخیره موجود</span>
+                                {% else %}
+                                    <span class="color-red">ذخیره ناموجود</span>
+                                {% endif %}
+                            </li>
+                        </ul>
+                        <ul class="social-link d-flex gap-3 align-items-center ps-0 mb-0 list-unstyled">
+                            <li><span>اشتراک گذاری:</span></li>
+                            <li><a href="https://www.facebook.com/" target="_blank"><i
+                                    class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                            </li>
+                            <li><a href="https://www.instagram.com/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="https://www.pinterest.com/" target="_blank"><i
+                                    class="fa-brands fa-pinterest-p"></i></a></li>
+                            <li><a href="https://www.tiktok.com/" target="_blank"><i
+                                    class="fa-brands fa-tiktok"></i></a></li>
+                            <li><a href="https://www.linkedin.com/" target="_blank"><i
+                                    class="fa-brands fa-linkedin-in"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-info-area pb-100">
+        <div class="container">
+            <ul class="nav nav-tabs product-info-tabs justify-content-center" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                            data-bs-target="#description-tab-pane" type="button" role="tab"
+                            aria-controls="description-tab-pane" aria-selected="true">شرح
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane"
+                            type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false"
+                            tabindex="-1">نظرات
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel"
+                     aria-labelledby="description-tab" tabindex="0">
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
+                     tabindex="0">
+                    <ul class="review-list ps-0 mb-0 list-unstyled" id="comment_area">
+                        {% for comment in comments %}
+                            <li>
+                                <div class="d-md-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        {% if comment.user.avatar %}
+                                            <img src="{{ comment.user.avatar.url }}" alt="team" class="img-thumbnail">
+                                        {% else %}
+                                            <img src="/assets/images/profile-builder-pro-min.png" alt="team"
+                                                 class="img-thumbnail">
+                                        {% endif %}
+                                    </div>
+                                    <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                        <h3>{{ comment.user }}</h3>
+                                        <p>{{ comment.text }}</p>
+                                    </div>
+                                </div>
+                                <p class="date-style">{{ comment.shamsi_date }}</p>
+                                <a onclick="fillParentId({{ comment.id }})" class="main-btn custom-btn">پاسخ</a>
+                            </li>
+
+                            {% for sub_comment in comment.productcomment_set.all %}
+                                <li class="sub-comment">
+                                    <div class="d-md-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <img src="/assets/images/team-1.jpg" alt="team" class="img-thumbnail">
+                                        </div>
+                                        <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                            <h3>{{ sub_comment.user }}</h3>
+                                            <p>{{ sub_comment.text }}</p>
+                                        </div>
+                                    </div>
+                                    <p class="date-style">{{ comment.shamsi_date }}</p>
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+
+                    {% if request.user.is_authenticated %}
+                        <div id="scroll_me"></div>
+                        <div class="review-form">
+                            <h3>یک بررسی بنویسید</h3>
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="hidden" value="" id="parent_id">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="commentText" placeholder="متن پیام"
+                                                      cols="30" rows="6"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <a onclick="sendProductComment({{ product.id }})" class="main-btn">ارسال</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% else %}
+                        <br>
+                        <br>
+                        <div class="alert alert-primary">
+                            <p>برای درج نظر میبایست <a class="custom-a color-blue" href="{% url 'login' %}"><b>لاگین</b></a> کنید</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products-area pb-100">
+        <div class="container">
+            <div class="section-title"><h2>شما همچنین ممکن است دوست داشته باشید</h2></div>
+            <div class="row justify-content-center">
+                {% for related_product in related_products %}
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="product-single-item">
+                            <div class="product-img">
+                                <a href="{% url 'products_detail' slug=related_product.slug %}" class="d-block">
+                                    <img src="{{ related_product.image.url }}" alt="product">
+                                </a>
+                            </div>
+                            <h3>
+                                <a href="{% url 'products_detail' slug=related_product.slug %}">{{ related_product.title }}</a>
+                            </h3>
+                            <span>{{ related_product.price|three_digits_currency }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

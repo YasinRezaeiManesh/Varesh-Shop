@@ -1,0 +1,85 @@
+{% load poll_extras %}
+
+
+{% if order.orderdetail_set.all %}
+    <div class="cart-area pt-100 pb-75">
+        <div class="container" id="order-detail-content">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <h3 class="margin-h2">سبد خرید شما</h3>
+                </div>
+                <div class="col-lg-8">
+                    {% for detail in order.orderdetail_set.all %}
+                        <div class="d-sm-flex align-items-center cart-single-item">
+                            <div class="flex-shrink-0 product-img-basket">
+                                <img src="{{ detail.product.image.url }}" alt="cart">
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center p-4">
+                                    <div>
+                                        <h3>{{ detail.product.title }}</h3>
+                                        {% comment %}<span class="color">رنگ سفید</span>{% endcomment %}
+                                        <div class="input-counter d-flex justify-content-between">
+                                            <a class="minus-btn" onclick="changeOrderDetailCount({{ detail.id }}, 'decrease')">
+                                                <i class="fa-regular fa-minus"></i>
+                                            </a>
+                                            <input type="text" value="{{ detail.count }}">
+                                            <a class="plus-btn" onclick="changeOrderDetailCount({{ detail.id }}, 'increase')">
+                                                <i class="fa-regular fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <a class="close-btn" onclick="removeOrderDetail({{ detail.id }})">
+                                            <i class="fa-regular fa-xmark fa-fw"></i>
+                                        </a>
+                                        <span class="d-block price">{{ detail.get_total_price|three_digits_currency }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart-subtotal">
+                        <a class="change" href="{% url 'edit_profile' %}">
+                            <b>تغییر آدرس</b>
+                        </a>
+                        <div class="d-flex justify-content-between mb-3">
+                            <h3>هزینه پست</h3>
+                            <h3>37,000 تومان</h3>
+                        </div>
+                        <div class="mb-30"></div>
+                        {% comment %}<div class="mb-4">
+                            <label class="radio-button-container">نرخ ثابت: 60.00 دلار<input type="radio" checked=""
+                                                                                             name="radio"><span
+                                    class="checkmark"></span></label><label class="radio-button-container">وانت محلی:
+                            80.00 دلار<input type="radio" name="radio"><span class="checkmark"></span></label>
+                        </div>
+                        <p>گزینه های حمل و نقل در حین تسویه حساب به روز می شود.</p>{% endcomment %}
+                        <div class="mb-30"></div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <h3>جمع</h3>
+                            <h3>{{ sum | three_digits_currency }}</h3>
+                        </div>
+                        <a href="{% url 'continue_payment' %}" class="main-btn w-100 text-center">به پرداخت ادامه دهید</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="basket-img">
+                    <img src="/assets/images/empty_cart_3.jpg" alt="">
+                </div>
+                <div class="d-flex justify-content-center margin-h2">
+                    <a href="{% url 'products_list' %}" class="main-btn">لیست محصولات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

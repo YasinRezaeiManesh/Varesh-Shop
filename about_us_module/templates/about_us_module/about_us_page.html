@@ -1,0 +1,72 @@
+{% extends 'shared/_layout.html' %}
+
+
+{% block title %}
+    درباره ما
+{% endblock %}
+
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background="./assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;./assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>درباره ما</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">درباره ما</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="about-area ptb-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-img-three">
+                        <img src="{{ about_us.image_1.url }}" alt="about-us">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content-three">
+                        <h3>{{ about_us.title_1 }}</h3>
+                        <p>{{ about_us.description_1 }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-30"></div>
+            <div class="custom-question form-profile">
+                <h2>اگر سوالی برایتان ایجاد شده است خوشحال میشویم برایمان ارسال کنید 👇</h2>
+                <a href="{% url 'contact_us' %}" class="main-btn">ارسال تیکت</a>
+            </div>
+            <div class="mb-30"></div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content-three">
+                        <h3>{{ about_us.title_2 }}</h3>
+                        <p>{{ about_us.description_2 }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-img-three">
+                        <img src="{{ about_us.image_2.url }}" alt="about-us">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

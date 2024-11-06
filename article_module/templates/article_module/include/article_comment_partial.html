@@ -1,0 +1,34 @@
+<ul class="review-list ps-0 mb-0 list-unstyled" id="comment_area_article">
+    {% for comment in comments %}
+        <li>
+            <div class="d-md-flex align-items-center">
+                <div class="flex-shrink-0">
+                    {% if comment.user.avatar %}
+                        <img src="{{ comment.user.avatar.url }}" alt="team">
+                    {% else %}
+                        <img src="/assets/images/profile-builder-pro-min.png" alt="team">
+                    {% endif %}
+                </div>
+                <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                    <h3>{{ comment.user }}</h3>
+                    <span>{{ comment.text }}</span>
+                </div>
+            </div>
+            <p class="date-style">{{ comment.shmasi_date }}</p>
+            <a href="#" onclick="fillParentIdArticle({{ comment.id }})" class="main-btn">پاسخ</a>
+        </li>
+        {% for sub_comment in comment.articlecomment_set.all %}
+            <li class="sub-comment">
+                <div class="d-md-flex align-items-center">
+                    <div class="flex-shrink-0"><img src="/assets/images/team-3.jpg" alt="team"></div>
+                    <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                        <h3>{{ sub_comment.user }}</h3>
+                        <span>{{ sub_comment.text }}</span>
+                    </div>
+                </div>
+                <p class="date-style">{{ sub_comment.shmasi_date }}</p>
+            </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+<div id="scroll_me"></div>

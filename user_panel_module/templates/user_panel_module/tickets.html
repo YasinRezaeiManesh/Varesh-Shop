@@ -1,0 +1,90 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+
+
+{% block title %}
+    تیکت ها
+{% endblock %}
+
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>تیکت ها</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">تیکت ها</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+                <img src="/assets/images/admin_picthure.png" alt="">
+            </div>
+            <div class="col-md-8 form-profile">
+                <h2 class="margin-h2">لیست تیکت های ارسال شده توسط شما</h2>
+                {% if user_tickets %}
+                    <ul class="review-list ps-0 mb-0 list-unstyled" id="comment_area">
+                        {% for ticket in user_tickets %}
+                            <li>
+                                <div class="d-md-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <img src="{{ user.avatar.url }}" alt="team" class="img-thumbnail">
+                                        <span class="date-style">{{ user_tickets.shamsi_date }}</span>
+                                    </div>
+                                    <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                        <h3>{{ ticket.email }}</h3>
+                                        <p>{{ ticket.message }}</p>
+                                    </div>
+                                </div>
+
+                                {% if ticket.response %}
+                                    <div class="d-md-flex align-items-center admin-margin">
+                                        <div class="flex-shrink-0">
+                                            <img src="/assets/images/admin_profile.jpg" alt="team" class="img-thumbnail">
+                                        </div>
+                                        <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                            <h3>ادمین سایت</h3>
+                                            <p>{{ ticket.response }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                {% else %}
+                    <div class="alert alert-primary margin-h2">
+                        <p>شما تیکت ارسال شده ای ندارید</p>
+                    </div>
+                {% endif %}
+                <h3 class="margin-h3">یک تیکت ارسال کنید 👇</h3>
+                <a href="{% url 'contact_us' %}" class="main-btn">ارسال تیکت</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+{% endblock %}

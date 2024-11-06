@@ -1,0 +1,379 @@
+.logo-custom {
+    margin-right: 50px;
+}
+
+.custom-form {
+    input {
+        margin-bottom: 10px;
+        margin-top: 5px;
+        height: 55px;
+        border: 1px solid #dfdfdf;
+        background-color: #fff;
+        color: #030303;
+        border-radius: 4px;
+        font-size: 18px;
+        padding: 10px 20px;
+        width: 100%;
+        transition: all ease .5s;
+        border-radius: 4px;
+    }
+
+    input:focus {
+        color: #000;
+        background-color: rgba(0, 0, 0, 0);
+        box-shadow: unset;
+        outline: 0;
+        border-color: #fd6219
+    }
+
+    .errorlist {
+        margin-top: 10px;
+        color: red;
+    }
+}
+
+.custom-forgot {
+    text-decoration: none;
+}
+
+.custom-h3 {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.custom-img {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 20px;
+    img {
+        width: 20%;
+    }
+
+}
+
+.basket-img{
+    display: flex;
+    justify-content: center;
+    img{
+        width: 60%;
+    }
+}
+
+.img-certificate{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    img{
+        width: 50%;
+        height: 150px;
+        border-radius: 20px;
+        border: 1px solid #dad8d8;
+    }
+}
+
+.custom-a {
+    text-decoration: none;
+    color: black;
+}
+
+.a-hover{
+    a:hover{
+        color: red;
+    }
+}
+
+.sub-comment {
+    margin-right: 50px;
+}
+
+.date-style {
+    margin-top: 10px;
+    margin-right: 21px;
+}
+
+.custom-btn:active {
+    color: #0a58ca;
+}
+
+.panel-link {
+    text-decoration: none;
+}
+
+.panel-link:hover {
+    color: red;
+}
+
+.custom-avatar {
+    color: #fdfdff;
+    margin-right: 20px;
+}
+
+.custom-btn2 {
+    margin-top: 40px;
+}
+
+.custom-profile-avatar {
+    border: 1px solid #dfdfdf;
+    padding: 20px 20px;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #b5b6b7;
+}
+
+.custom-profile-avatar-url {
+    border-radius: 40px;
+    margin-bottom: 20px;
+    margin-right: 70px;
+    width: 60%;
+    height: 200px;
+}
+
+.profile_panel {
+    width: 40%;
+    margin-right: 60%;
+    border-radius: 100px;
+    margin-bottom: 30px;
+
+}
+
+.information {
+    font-size: 18px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.form-profile {
+    border: 1px solid #dfdfdf;
+    padding: 30px;
+    border-radius: 4px;
+
+    .errorlist {
+        margin-top: 20px;
+        color: red;
+    }
+}
+
+.margin-img {
+    margin-bottom: 50px;
+}
+
+.margin-h2 {
+    margin-bottom: 50px;
+}
+
+.margin-h3 {
+    margin-top: 90px;
+    margin-bottom: 40px;
+}
+
+.admin-margin {
+    margin-top: 40px;
+    margin-right: 60px;
+    margin-bottom: 100px;
+}
+
+.custom-li {
+    text-align: right;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.custom-btn {
+    justify-content: center;
+    display: flex;
+}
+
+.custom-span {
+}
+
+.custom-icon {
+    width: 30px;
+}
+
+.custom-detail {
+    p {
+        margin-top: 30px;
+    }
+
+    summary::marker {
+        color: white;
+    }
+
+    margin-top: 50px;
+
+    summary:hover {
+        .custom-icon {
+            color: red;
+        }
+    }
+}
+
+.custom-service-detail-img {
+    img {
+        border-radius: 20px;
+    }
+}
+
+.custom-question {
+    text-align: center;
+
+    a {
+        margin-top: 30px;
+    }
+}
+
+.image2 {
+    animation-name: slideInUp;
+    animation-duration: 600ms;
+    animation-timing-function: ease;
+    animation-delay: 0ms;
+    animation-direction: normal;
+    animation-fill-mode: both;
+}
+
+.white-color {
+    color: white;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    display: flex;
+    width: 160px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 0;
+    gap: 12px;
+    outline: none;
+    color: #fff;
+    background-color: black;
+    transition: all 200ms ease-in;
+}
+
+.dropdown-btn:hover {
+    background-color: #fd6219;
+
+    .btn-icon {
+        transform: rotate(180deg);
+    }
+}
+
+.btn-icon {
+    width: 22px;
+    height: 22px;
+    transition: all 200ms ease-in;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 50px;
+    width: 160px;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 200ms ease-in 80ms;
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 6px;
+}
+
+.dropdown-content a:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(1px);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.color-red{
+    color: red;
+}
+
+.color-green{
+    color: #0dcc0d;
+}
+
+.color-blue{
+    color: #0a58ca;
+}
+
+.custom-border-top{
+    margin-top: 20px;
+    border-top: 1px solid #dad8d8;
+    margin-bottom: 20px;
+}
+
+.team-profile{
+    width: 100%;
+    height: 300px;
+}
+
+.product-img-basket{
+    width: 20%;
+    margin: 6px;
+    img{
+        border: 1px solid #dad8d8;
+        border-radius: 20px;
+    }
+}
+
+.custom-logo-header{
+    img{
+        width: 400px;
+    }
+}
+
+.custom-logo-footer{
+    img{
+        width: 200px;
+    }
+}
+
+.justify-content-left{
+    justify-content: left;
+}
+
+.padding-top-0{
+    padding-top: 0;
+
+}
+
+.color-white{
+    color: white;
+}
+
+.pyment-page{
+    margin: 50px 0;
+
+    img{
+        width: 500px;
+    }
+
+    h2{
+        margin-top: 20px;
+    }
+
+    h3{
+        color: orangered;
+    }
+}

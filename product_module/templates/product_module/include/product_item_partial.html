@@ -1,0 +1,14 @@
+{% load poll_extras %}
+
+
+<div class="col-lg-3 col-sm-6 mix monitor monitor mobile">
+    <div class="product-single-item">
+        <div class="product-img">
+            <a href="{% url 'products_detail' slug=product.slug %}" class="d-block">
+                <img src="{{ product.image.url }}" alt="product">
+            </a>
+        </div>
+        <h3><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h3>
+        <span>{{ product.price|three_digits_currency }}</span>
+    </div>
+</div>

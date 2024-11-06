@@ -1,0 +1,58 @@
+{% extends 'shared/_layout.html' %}
+
+
+{% block title %}
+    لیست خدمات
+{% endblock %}
+
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>لیست خدمات</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">لیست خدمات</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="services-area pt-100 pb-75">
+        <div class="container">
+            <div class="row justify-content-center" data-cues="slideInUp" data-disabled="true">
+                {% for service in service_list %}
+                    <div class="col-xl-3 col-sm-6" data-cue="slideInUp" data-show="true"
+                         style="animation-name: slideInUp; animation-duration: 600ms; animation-timing-function: ease; animation-delay: 0ms; animation-direction: normal; animation-fill-mode: both;">
+                        <div class="services-single-item style-two style-three">
+                            <div class="icon">
+                                <img src="/assets/images/services-icon-1.svg" alt="services-icon">
+                            </div>
+                            <h3>{{ service.title }}</h3>
+                            <p>{{ service.short_description }}</p>
+                            <div class="ps-0 mb-0 custom-li">
+                                <a href="{% url 'service_detail' slug=service.slug %}" class="main-btn">نمایش جزییات</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

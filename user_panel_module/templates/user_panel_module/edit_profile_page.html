@@ -1,0 +1,83 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+
+
+{% block title %}
+    پنل کاربری
+{% endblock %}
+
+{% block header_references %}
+    <link rel="stylesheet" href="/assets/lib/image_lightbox/css/lightbox.min.css">
+{% endblock %}
+
+{% block footer_references %}
+    <script src="/assets/lib/image_lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/lib/image_lightbox/js/lightbox-plus-jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="preloader preloader-deactivate">
+        <div class="content">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <div class="page-banner-area bg-black bg-img" data-background=".//assets/images/banner-bg-shape.png"
+         style="background-image: url(&quot;.//assets/images/banner-bg-shape.png&quot;);">
+        <div class="container mw-1680">
+            <div class="page-banner-content">
+                <h2>ویرایش پروفایل</h2>
+                <ul class="ps-0 mb-0 list-unstyled justify-content-center page-breadcrumb d-flex flex-wrap gap-4">
+                    <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+                    <li><span class="active">ویرایش پروفایل</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% if current_user.avatar %}
+                    <a href="{{ current_user.avatar.url }}" data-lightbox="profile-avatar">
+                        <img src="{{ current_user.avatar.url }}" alt="" class="custom-profile-avatar-url">
+                    </a>
+                {% else %}
+                    <img src="/assets/images/profile-builder-pro-min.png" alt="" class="profile_panel">
+                {% endif %}
+                {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+            </div>
+            <div class="col-md-8 form-profile">
+                <form action="{% url 'edit_profile' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h2 class="margin-h2">فرم ویرایش اطلاعات</h2>
+                    {{ form.first_name }}
+                    <br>
+                    {{ form.last_name }}
+                    <br>
+                    <div class="custom-profile-avatar">
+                        <span>تصویر پروفایل</span>
+                        <span class="custom-avatar">{{ form.avatar }}</span>
+                    </div>
+                    <br>
+                    {{ form.address }}
+                    <br>
+                    {{ form.about_user }}
+                    <br>
+                    <button type="submit" class="main-btn col-3">ثبت</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+{% endblock %}
