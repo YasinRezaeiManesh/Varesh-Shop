@@ -33,7 +33,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         product: Product = kwargs.get('object')
-        context['comments'] = ProductComment.objects.filter(product_id=product.id, parent=None).order_by('-shamsi_date').prefetch_related('productcomment_set')
+        context['comments'] = ProductComment.objects.filter(product_id=product.id, parent=None, success=True).order_by('-shamsi_date').prefetch_related('productcomment_set')
         context['comments_count'] = ProductComment.objects.filter(product_id=product.id).count()
         context['related_products'] = Product.objects.filter(tags_id=product.tags.id).exclude(pk=product.id)[:4]
         return context

@@ -32,7 +32,7 @@ class ArticleDetailView(DetailView):
         article = self.object
         galleries = list(ArticleGallery.objects.filter(article_id=article.id).all())
         context['galleries'] = galleries
-        context['comments'] = ArticleComment.objects.filter(article_id=article.id, parent=None)
+        context['comments'] = ArticleComment.objects.filter(article_id=article.id, parent=None, success=True)
         return context
 
 

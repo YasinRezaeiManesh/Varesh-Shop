@@ -73,6 +73,7 @@ class ArticleComment(models.Model):
     shmasi_time = jalali_models.jDateTimeField(auto_now_add=True, verbose_name='زمان شمسی')
     shmasi_date = jalali_models.jDateField(auto_now_add=True, verbose_name='تاریخ شمسی')
     text = models.TextField(verbose_name='متن کامنت')
+    success = models.BooleanField(default=False, verbose_name="تایید شده")
 
     def __str__(self):
         return str(self.user)

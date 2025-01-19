@@ -133,16 +133,19 @@
                         </li>
                         <div class="mb-30"></div>
                         {% for sub_comment in comment.articlecomment_set.all %}
-                            <li class="sub-comment">
-                                <div class="d-md-flex align-items-center">
-                                    <div class="flex-shrink-0"><img src="/assets/images/team-3.jpg" alt="team"></div>
-                                    <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
-                                        <h3>{{ sub_comment.user }}</h3>
-                                        <p>{{ sub_comment.text }}</p>
+                            {% if sub_comment.success %}
+                                <li class="sub-comment">
+                                    <div class="d-md-flex align-items-center">
+                                        <div class="flex-shrink-0"><img src="/assets/images/team-3.jpg" alt="team">
+                                        </div>
+                                        <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                            <h3>{{ sub_comment.user }}</h3>
+                                            <p>{{ sub_comment.text }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <p class="date-style">{{ sub_comment.shmasi_date }}</p>
-                            </li>
+                                    <p class="date-style">{{ sub_comment.shmasi_date }}</p>
+                                </li>
+                            {% endif %}
                         {% endfor %}
                     {% endfor %}
                 </ul>

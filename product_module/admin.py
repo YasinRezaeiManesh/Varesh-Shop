@@ -20,5 +20,5 @@ class ProductTagsAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.ProductComment)
-class ProductCategoryAdmin(admin.ModelAdmin):
-    list_display = ['user', 'shamsi_date', 'parent']
+class ProductCommentAdmin(admin.ModelAdmin):
+    list_display = ['user', 'shamsi_date', 'parent', "success"]

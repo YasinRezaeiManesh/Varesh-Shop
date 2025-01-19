@@ -152,18 +152,20 @@
                             </li>
 
                             {% for sub_comment in comment.productcomment_set.all %}
-                                <li class="sub-comment">
-                                    <div class="d-md-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <img src="/assets/images/team-1.jpg" alt="team" class="img-thumbnail">
+                                {% if sub_comment.success %}
+                                    <li class="sub-comment">
+                                        <div class="d-md-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <img src="/assets/images/team-1.jpg" alt="team" class="img-thumbnail">
+                                            </div>
+                                            <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
+                                                <h3>{{ sub_comment.user }}</h3>
+                                                <p>{{ sub_comment.text }}</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1 ms-md-4 mt-3 mt-md-0">
-                                            <h3>{{ sub_comment.user }}</h3>
-                                            <p>{{ sub_comment.text }}</p>
-                                        </div>
-                                    </div>
-                                    <p class="date-style">{{ comment.shamsi_date }}</p>
-                                </li>
+                                        <p class="date-style">{{ comment.shamsi_date }}</p>
+                                    </li>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                     </ul>
@@ -193,7 +195,8 @@
                         <br>
                         <br>
                         <div class="alert alert-primary">
-                            <p>برای درج نظر میبایست <a class="custom-a color-blue" href="{% url 'login' %}"><b>لاگین</b></a> کنید</p>
+                            <p>برای درج نظر میبایست <a class="custom-a color-blue" href="{% url 'login' %}"><b>لاگین</b></a>
+                                کنید</p>
                         </div>
                     {% endif %}
                 </div>

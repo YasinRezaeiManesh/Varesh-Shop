@@ -65,6 +65,7 @@ class ProductComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر')
     shamsi_date = jalali_models.jDateField(auto_now_add=True, verbose_name='تاریخ شمسی')
     text = models.TextField(verbose_name='متن پیام')
+    success = models.BooleanField(default=False, verbose_name="تایید شده")
 
     def __str__(self):
         return str(self.user)

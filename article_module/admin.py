@@ -25,5 +25,5 @@ class ArticleGalleryAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.ArticleComment)
-class ArticleGalleryAdmin(admin.ModelAdmin):
-    pass
+class ArticleCommentAdmin(admin.ModelAdmin):
+    list_display = ["user", "article", "success", "parent"]
