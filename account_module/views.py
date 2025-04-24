@@ -39,6 +39,7 @@ class RegisterView(View):
                     is_active=True,
                     first_name=user_first_name,
                     last_name=user_last_name,
+
                 )
                 new_user.set_password(user_password)
                 new_user.save()
@@ -108,6 +109,10 @@ class ForgotPasswordView(View):
                 send_email('بازیابی کلمه عبور', user.email, {'user': user}, 'email/forgot_password.html')
 
                 return redirect(reverse('home_page'))
+        context = {
+            'forget_password_form': forget_password_form
+        }
+        return render(request, 'account_module/forget_password.html', context)
 
 
 class ResetPasswordView(View):
